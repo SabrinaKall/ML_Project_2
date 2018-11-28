@@ -1,0 +1,4 @@
+LogisticRegression: ~ 0.44
+RandomForestClassfier: ~ 0.31
+KNeighbors: ~ 0.35 (k = 1, 3, 5)
+
