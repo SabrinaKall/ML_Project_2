@@ -1,6 +1,7 @@
 * Paper
 * Vary sklearn models
-* Neural networks
+* Neural networks + make submittable
+* Given neural networks file -> vary hyperparameters
 
 * Regularization?
 * Polynomial feature expansion? 
