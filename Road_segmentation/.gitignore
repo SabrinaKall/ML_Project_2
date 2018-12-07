@@ -1,6 +1,6 @@
 predictions/*
 graphs/*
-prediction_training/*
+predictions_training/*
 F1/*
 reconstruction/*
 submissions/*
