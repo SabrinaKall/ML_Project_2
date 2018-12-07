@@ -1,5 +1,0 @@
-1) Set-up and baseline with logistic regression					0.458
--> note that local tests perform much better (test images very different?)
-2) Try out different Sklearn classifiers (none better)
-3) Try out varying patch size: optimum found at 40 				0.48
-4) Try out with colors and grey together: improvement to        0.505
