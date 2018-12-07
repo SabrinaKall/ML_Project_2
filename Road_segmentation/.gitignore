@@ -1,10 +1,10 @@
-predictions/*
-graphs/*
-predictions_training/*
-F1/*
-reconstruction/*
-submissions/*
-test_set_images/*
-training/*
+predictions/
+graphs/
+predictions_training/
+F1/
+reconstruction/
+submissions/
+test_set_images/
+training/
 
 
