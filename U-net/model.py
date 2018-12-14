@@ -9,19 +9,15 @@ from keras.optimizers import *
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler
 from keras import backend as keras
 
-def as_keras_metric(method):
-    import functools
-    from keras import backend as K
-    import tensorflow as tf
-    @functools.wraps(method)
-    def wrapper(self, args, **kwargs):
-        """ Wrapper for turning tensorflow metrics into keras metrics """
-        value, update_op = method(self, args, **kwargs)
-        K.get_session().run(tf.local_variables_initializer())
-        with tf.control_dependencies([update_op]):
-            value = tf.identity(value)
-        return value
-    return wrapper
+def focal_loss(gamma=2.):
+    def focal_loss_fixed(y_true, y_pred):
+        pos = tf.count_nonzero(tf.equal(y_true, 1), dtype="float32") 
+        neg = tf.count_nonzero(tf.equal(y_true, 0), dtype="float32")
+        alpha = tf.math.divide(pos, (pos+neg))
+        pt_1 = tf.where(tf.equal(y_true, 1), y_pred, tf.ones_like(y_pred))
+        pt_0 = tf.where(tf.equal(y_true, 0), y_pred, tf.zeros_like(y_pred))
+        return -K.sum(alpha * K.pow(1. - pt_1, gamma) * K.log(pt_1))-K.sum((1-alpha) * K.pow( pt_0, gamma) * K.log(1. - pt_0))
+    return focal_loss_fixed
 
 def unet(pretrained_weights = None,input_size = (400,400,3)):
     inputs = Input(input_size)
@@ -66,16 +62,14 @@ def unet(pretrained_weights = None,input_size = (400,400,3)):
     conv10 = Conv2D(1, 1, activation = 'sigmoid')(conv9)
 
     model = Model(input = inputs, output = conv10)
-
-    precision = as_keras_metric(tf.metrics.precision)
-    recall = as_keras_metric(tf.metrics.recall)
     
-    model.compile(optimizer = Adam(lr = 1e-4), loss = 'binary_crossentropy', metrics = ['accuracy', precision, recall])
+    #(later) try focal_loss() instead of 'binary_crossentropy'
+    model.compile(optimizer = Adam(lr = 1e-4), loss = 'binary_crossentropy', metrics = ['accuracy'])
     
     #model.summary()
 
     if(pretrained_weights):
-    	model.load_weights(pretrained_weights)
+        model.load_weights(pretrained_weights)
 
     return model
 
