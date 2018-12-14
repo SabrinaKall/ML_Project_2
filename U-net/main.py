@@ -16,7 +16,7 @@ model = unet()
 model_checkpoint = ModelCheckpoint('unet_roads.hdf5', monitor='loss',verbose=1, save_best_only=True)
 model.fit_generator(trainDataGen,steps_per_epoch=300,epochs=1,callbacks=[model_checkpoint])
 
-testGene = testGenerator("data/roadsegmentation/test", 50, (608,608), flag_multi_class=True)
+testGene = testGenerator("data/roadsegmentation/test", 50, (608,608))
 model = unet(pretrained_weights="unet_membrance.hdf5", input_size = (608,608,3))
 #model.load_weights("unet_roads.hdf5")
 results = model.predict_generator(testGene,50,verbose=1)
