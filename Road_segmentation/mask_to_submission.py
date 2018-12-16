@@ -6,10 +6,10 @@ import matplotlib.image as mpimg
 import re
 
 foreground_threshold = 0.25 # percentage of pixels > 1 required to assign a foreground label to a patch
-#predictions_folder = 'predictions/'
-#submission_filename = 'submissions/epoch_4.csv'
-predictions_folder = 'F1/predictions/images/'
-submission_filename = 'F1/predictions/labels/labels.csv'
+predictions_folder = 'predictions/'
+submission_filename = 'submissions/submission.csv'
+#predictions_folder = 'F1/predictions/images/'
+#submission_filename = 'F1/predictions/labels/labels.csv'
 
 # assign a label to a patch
 def patch_to_label(patch):
@@ -45,6 +45,7 @@ if __name__ == '__main__':
     for i in range(1, 51):
         image_filename = predictions_folder + 'prediction_' + '%.3d' % i + '.png'
         #image_filename = predictions_folder + '%.3d' % i + '_predict.png'
+        #image_filename = predictions_folder + "%d_predict.png"%i
         print (image_filename)
         image_filenames.append(image_filename)
     masks_to_submission(submission_filename, *image_filenames)
