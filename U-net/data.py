@@ -59,7 +59,7 @@ def testGenerator(test_path,num_image = 30,target_size = (400,400),as_gray = Tru
         img = io.imread(os.path.join(test_path,"test_%d.png"%i),as_gray = as_gray)
         #img = img / 255
         img = trans.resize(img,target_size)
-        img = np.reshape(img,(1,)+img.shape)
+        img = np.reshape(img,(1,)+img.shape) if not as_gray else np.reshape(img,(1,)+img.shape+(1,))
         yield img
 
 
