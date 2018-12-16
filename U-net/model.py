@@ -8,6 +8,8 @@ from keras.layers import *
 from keras.optimizers import *
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler
 from keras import backend as keras
+#from skimage import data, img_as_float
+from skimage import exposure
 
 def focal_loss(gamma=2.):
     def focal_loss_fixed(y_true, y_pred):
@@ -19,7 +21,7 @@ def focal_loss(gamma=2.):
         return -K.sum(alpha * K.pow(1. - pt_1, gamma) * K.log(pt_1))-K.sum((1-alpha) * K.pow( pt_0, gamma) * K.log(1. - pt_0))
     return focal_loss_fixed
 
-def unet(pretrained_weights = None,input_size = (400,400,3)):
+def unet(pretrained_weights = None,input_size = (400,400,1)):
     inputs = Input(input_size)
     conv1 = Conv2D(64, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(inputs)
     conv1 = Conv2D(64, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(conv1)
@@ -73,4 +75,19 @@ def unet(pretrained_weights = None,input_size = (400,400,3)):
 
     return model
 
+
+def adapt_hist(image):
+    adapt_image = exposure.equalize_adapthist(image, clip_limit=0.03)
+    return adapt_image
+
+def contrast_stretch(image):
+    per2, per98 = np.percentile(image, (2, 98))
+    stretch_image = exposure.rescale_intensity(image, in_range=(per2, per98))
+    return stretch_image
+
+def enhance(image):
+    out_image = adapt_hist(image)
+    out_image = contrast_stretch(out_image)
+    return out_image
+    
 

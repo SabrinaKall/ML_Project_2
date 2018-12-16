@@ -41,7 +41,7 @@ def masks_to_submission(submission_filename, *image_filenames):
 
 if __name__ == '__main__':
     image_filenames = []
-    for i in enumerate(50):
+    for i in range(1, 51):
         image_filename = predictions_folder + "%d_predict.png"%i
         print (image_filename)
         image_filenames.append(image_filename)
