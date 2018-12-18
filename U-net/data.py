@@ -17,7 +17,7 @@ def adjustData(img,mask,num_class):
 
 
 
-def trainGenerator(batch_size,train_path,image_folder,mask_folder,aug_dict,image_color_mode = "grayscale",
+def trainGenerator(batch_size,train_path,image_folder,mask_folder,aug_dict,image_color_mode = "rgb",
                     mask_color_mode = "grayscale",image_save_prefix  = "image",mask_save_prefix  = "mask",
                     num_class = 2,save_to_dir = None,target_size = (400,400),seed = 1):
     '''
@@ -54,7 +54,7 @@ def trainGenerator(batch_size,train_path,image_folder,mask_folder,aug_dict,image
 
 
 
-def testGenerator(test_path,num_image = 30,target_size = (400,400),as_gray = True):
+def testGenerator(test_path,num_image = 30,target_size = (400,400),as_gray = False):
     for i in range(1, num_image + 1):
         img = io.imread(os.path.join(test_path,"test_%d.png"%i),as_gray = as_gray)
         #img = img / 255
