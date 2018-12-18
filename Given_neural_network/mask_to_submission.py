@@ -8,8 +8,8 @@ import re
 foreground_threshold = 0.25 # percentage of pixels > 1 required to assign a foreground label to a patch
 #predictions_folder = 'predictions/'
 #submission_filename = 'submissions/epoch_4.csv'
-predictions_folder = 'F1/predictions/images/'
-submission_filename = 'F1/predictions/labels/labels.csv'
+predictions_folder = 'predictions/'
+submission_filename = 'submissions/given_nn_submission.csv'
 
 # assign a label to a patch
 def patch_to_label(patch):
