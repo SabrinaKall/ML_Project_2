@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.image as mpimg
 import re
 
-foreground_threshold = 0.25 # percentage of pixels > 1 required to assign a foreground label to a patch
+foreground_threshold = 0.23 # percentage of pixels > 1 required to assign a foreground label to a patch
 predictions_folder = 'data/roadsegmentation/test/predictions/'
 submission_filename = 'data/roadsegmentation/submission.csv'
 
