@@ -38,6 +38,14 @@ def masks_to_submission(submission_filename, *image_filenames):
         for fn in image_filenames[0:]:
             f.writelines('{}\n'.format(s) for s in mask_to_submission_strings(fn))
 
+def create_submission():
+    image_filenames = []
+    for i in range(1, 51):
+        image_filename = predictions_folder + "%d_predict.png"%i
+        print (image_filename)
+        image_filenames.append(image_filename)
+    masks_to_submission(submission_filename, *image_filenames)
+
 
 if __name__ == '__main__':
     image_filenames = []

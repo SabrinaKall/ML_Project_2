@@ -1,5 +1,6 @@
 from model import *
 from data import *
+from mask_to_submission import *
 
 ''' Here is the training code, if you want: training time with 16 CPUs and a GPU: ~25 hours
 # data augmentation specifications
@@ -37,3 +38,6 @@ results = model.predict_generator(testGene,50,verbose=1)
 
 # save predicted images
 saveResult("data/roadsegmentation/test/predictions",results)
+
+# get submission file
+create_submission()
