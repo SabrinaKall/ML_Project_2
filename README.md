@@ -1,6 +1,6 @@
 # Project Road Segmentation
 
-## Structure
+#### Structure
 
 Our project can be divided into three parts, each of which can be treated as an independant subproject. They all have a similar structure, with notebooks containing classifiers at the root that store predictions in a `predictions` folder, as well as a `mask_to_submission.py` file that transforms these predictions into a csv file, stored in the `submissions` folder
 
@@ -16,12 +16,31 @@ This folder contains given neural network adapted as a python notebook `Given_NN
 
 ### U-net
 
-This folder contains the U-net classifier, composed of a training notebook `trainUnet.ipynb`and a testing notebook `testUnet.ipynb` (although the trainUnet-upynb is also equipped to create test predictions). The reason for this separation lies in the amount of time it takes to run the training, ranging from 5 to 15 hours per epoch depending on resources. The two notebooks are currently set up for our best results (color images with 45° rotation), but contain instructions to modify the parameters.
+This folder contains the U-net classifier.
 
-The model itself is stored in the `model.py`file and the functions to exploit it in the `data.py`file.
 
-There is also the `dataAugmentationVisualisation.ipynb` notebook, which demonstrates in more detail how data augmentation is done.
+####File distribution
+__model.py__: 				functions related to model definition
+__data.py__: 				functions related to data augmentation
+__trainUnet.ipynb__: 			training the neural network
+__testUnet.ipynb__: 			predicting test labels
+__dataAugmentationVisualisation.ipynb__: 	examples of augmentations we are applying, and the reasoning behind them
+__mask\_to\_submission.py__:			converting labels in png to csv
 
-As this is our best classifier, the `run.py`file is located here. It can be used according to the following instructions. Note that due to the extensive runtime of the best classifier, we are providing you with the final weights. But as these are stored in a file too large to submit, you first need to download it from Google Drive using the provided link.
 
-### run.py instructions
+
+
+#### run.py instructions
+
+0. If not yet done, install tensorflow version 1.12.0 (https://www.tensorflow.org/install/) and keras version 2.2.4 (https://keras.io/)
+   If you have pip, you can use the following commands:
+	pip install keras
+	pip install tensorflow
+
+1. Download the weights from the following link: https://drive.google.com/open?id=1cShMMg8ZWikr1rF692MBuR4HS1ON7NHL
+
+2. Move the weights file to the directory `U-net/`
+3. Run the run.py file to create predictions of the test images using the weights: `python3 run.py` 
+
+The predicted images are now in the `predictions` folder and the labels in the `submissions/submission.csv` file.
+

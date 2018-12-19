@@ -23,3 +23,4 @@ trainUnet.ipynb: 			training the neural network
 testUnet.ipynb: 			predicting test labels
 dataAugmentationVisualisation.ipynb: 	examples of augmentations we are applying, and the reasoning behind them
 mask_to_submission.py:			converting labels in png to csv
+Mittwoch, 19. Dezember 2018 01:16 
