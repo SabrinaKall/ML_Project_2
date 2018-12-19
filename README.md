@@ -1,32 +1,17 @@
 # Project Road Segmentation
 
-For this choice of project task, we provide a set of satellite images acquired 
-from GoogleMaps. We also provide ground-truth images where each pixel is labeled 
-as road or background. 
+## Structure
 
-Your task is to train a classifier to segment roads in these images, i.e. 
-assigns a label `road=1, background=0` to each pixel.
+Our project can be divided into three parts, each of which can be treated as an independant subproject.
 
-Submission system environment setup:
+### Basic_Models
 
-1. The dataset is available from the 
-[CrowdAI page](https://www.crowdai.org/challenges/epfl-ml-road-segmentation).
+This folder contains a series of notebooks, using "traditional" (read, non-neural network) classifiers, including our initial baseline (`Default_submission.ipynb`). They are numbered in order and each contain a decription within. Each can be run separately to create a series of predicted images, stored in the `predictions` folder, which can be converted to a submission by running the `mask\_to\_submission.py` file. The submission will be saved in the `submissions` folder.
 
-2. Obtain the python notebook `segment_aerial_images.ipynb` from this github 
-folder, to see example code on how to extract the images as well as 
-corresponding labels of each pixel.
+### Given_neural_network
 
-The notebook shows how to use `scikit learn` to generate features from each 
-pixel, and finally train a linear classifier to predict whether each pixel is 
-road or background. Or you can use your own code as well. Our example code here 
-also provides helper functions to visualize the images, labels and predictions. 
-In particular, the two functions `mask_to_submission.py` and 
-`submission_to_mask.py` help you to convert from the submission format to a 
-visualization, and vice versa.
+This folder contains given neural network adapted as a python notebook.
 
-3. As a more advanced approach, try `tf_aerial_images.py`, which demonstrates 
-the use of a basic convolutional neural network in TensorFlow for the same 
-prediction task.
+### U-net
 
-Evaluation Metric:
- [F1 score](https://en.wikipedia.org/wiki/F1_score)
+This folder contains the U-net classifier, composed of a training notebook (`trainUnet.ipynb`) and a testing notebook (`testUnet.ipynb`). To 
