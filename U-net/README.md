@@ -4,7 +4,7 @@ Note that we simply provide the trained weights of our best model, as creating t
 
 ## Instructions
 
-0. If not yet done, install tensorflow (https://www.tensorflow.org/install/)
+0. If not yet done, install tensorflow version 1.12.0 (https://www.tensorflow.org/install/) and keras version 2.2.4 (https://keras.io/)
 
 1. Download the weights from the following link: https://drive.google.com/open?id=1cShMMg8ZWikr1rF692MBuR4HS1ON7NHL
 
@@ -12,4 +12,5 @@ Note that we simply provide the trained weights of our best model, as creating t
 3. Run the run.py file to create predictions of the test images using the weights: `python3 run.py` 
 4. run the mask\_to\_submission file to get the labels from the predicted images: `python3 mask_to_submission.py`
 
-The labels are now in the `data/roadsegmentation/submission.csv`file.
+The labels are now in the `data/roadsegmentation/submission.csv` file.
+
