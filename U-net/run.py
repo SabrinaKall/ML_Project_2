@@ -37,7 +37,7 @@ model = unet(pretrained_weights="unet_roads.hdf5", input_size = (608,608,3))
 results = model.predict_generator(testGene,50,verbose=1)
 
 # save predicted images
-saveResult("data/roadsegmentation/test/predictions",results)
+saveResult("predictions",results)
 
 # get submission file
 create_submission()
